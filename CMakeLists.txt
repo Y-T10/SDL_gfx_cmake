@@ -7,7 +7,7 @@ project(SDL_gfx
 find_package(SDL2 REQUIRED)
 
 add_library (SDL_gfx SHARED)
-
+add_library (SDL_gfx::SDL_gfx ALIAS SDL_gfx)
 
 target_include_directories(
 	SDL_gfx PUBLIC
