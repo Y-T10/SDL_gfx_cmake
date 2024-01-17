@@ -1,7 +1,8 @@
-cmake_minimum_required (VERSION 2.8)
-project (SDL_gfx)
-set (SDL_gfx_VERSION_MAJOR 3)
-set (SDL_gfx_VERSION_MINOR 0)
+cmake_minimum_required (VERSION 3.0)
+project(SDL_gfx
+    VERSION 2.0.27
+    LANGUAGES C
+)
 
 set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 find_package (SDL2 REQUIRED)
