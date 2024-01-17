@@ -10,11 +10,13 @@ include_directories (
 	"${SDL2_INCLUDE_DIR}"
 	)
 
-file(GLOB INCLUDE_FILES ${CMAKE_SOURCE_DIR}/*.h)
+add_library (SDL_gfx SHARED)
 
-add_library (SDL_gfx SHARED
-	${INCLUDE_FILES}
-	)
+
+target_include_directories(
+	SDL_gfx PUBLIC
+	${CMAKE_CURRENT_SOURCE_DIR}
+)
 
 target_sources(SDL_gfx PRIVATE
 	SDL_framerate.c
