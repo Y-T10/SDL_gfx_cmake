@@ -10,12 +10,18 @@ include_directories (
 	"${SDL2_INCLUDE_DIR}"
 	)
 
-file(GLOB SOURCE_FILES ${CMAKE_SOURCE_DIR}/*.c)
 file(GLOB INCLUDE_FILES ${CMAKE_SOURCE_DIR}/*.h)
 
 add_library (SDL_gfx SHARED
-	${SOURCE_FILES}
 	${INCLUDE_FILES}
+	)
+
+target_sources(SDL_gfx PRIVATE
+	SDL_framerate.c
+	SDL_gfxBlitFunc.c
+	SDL_gfxPrimitives.c
+	SDL_imageFilter.c
+	SDL_rotozoom.c
 	)
 
 target_link_libraries (SDL_gfx
