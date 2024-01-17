@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.0)
-project (SDL2_gfx
+project (SDL_gfx
     VERSION 2.0.27
     LANGUAGES C
 )
