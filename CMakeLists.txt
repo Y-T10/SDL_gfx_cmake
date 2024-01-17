@@ -6,15 +6,15 @@ project (SDL_gfx
 
 find_package (SDL2 REQUIRED)
 
-add_library (SDL_gfx)
-add_library (SDL_gfx::SDL_gfx ALIAS SDL_gfx)
+add_library (${PROJECT_NAME})
+add_library ("${PROJECT_NAME}::${PROJECT_NAME}" ALIAS ${PROJECT_NAME})
 
 target_include_directories (
-	SDL_gfx PUBLIC
+	${PROJECT_NAME} PUBLIC
 	${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-target_sources (SDL_gfx PRIVATE
+target_sources (${PROJECT_NAME} PRIVATE
 	SDL_framerate.c
 	SDL_gfxBlitFunc.c
 	SDL_gfxPrimitives.c
@@ -22,9 +22,9 @@ target_sources (SDL_gfx PRIVATE
 	SDL_rotozoom.c
 	)
 
-target_link_libraries (SDL_gfx PUBLIC
+target_link_libraries (${PROJECT_NAME} PUBLIC
 	$<IF:$<BOOL:${BUILD_SHARED_LIBS}>,SDL2::SDL2,SDL2::SDL2-static>
 	)
 
-install (TARGETS SDL_gfx DESTINATION lib)
+install (TARGETS ${PROJECT_NAME} DESTINATION lib)
 install (FILES ${INCLUDE_FILES} DESTINATION include/SDL)
