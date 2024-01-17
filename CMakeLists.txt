@@ -6,10 +6,6 @@ project(SDL_gfx
 
 find_package(SDL2 REQUIRED)
 
-include_directories (
-	"${SDL2_INCLUDE_DIR}"
-	)
-
 add_library (SDL_gfx SHARED)
 
 
