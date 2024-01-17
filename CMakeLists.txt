@@ -1,26 +1,30 @@
-cmake_minimum_required (VERSION 2.8)
-project (SDL_gfx)
-set (SDL_gfx_VERSION_MAJOR 3)
-set (SDL_gfx_VERSION_MINOR 0)
+cmake_minimum_required (VERSION 3.0)
+project (SDL2_gfx
+    VERSION 2.0.27
+    LANGUAGES C
+)
 
-set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 find_package (SDL2 REQUIRED)
 
-include_directories (
-	"${SDL2_INCLUDE_DIR}"
+add_library (${PROJECT_NAME})
+add_library ("${PROJECT_NAME}::${PROJECT_NAME}" ALIAS ${PROJECT_NAME})
+
+target_include_directories (
+	${PROJECT_NAME} PUBLIC
+	${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_sources (${PROJECT_NAME} PRIVATE
+	SDL_framerate.c
+	SDL_gfxBlitFunc.c
+	SDL_gfxPrimitives.c
+	SDL_imageFilter.c
+	SDL_rotozoom.c
 	)
 
-file(GLOB SOURCE_FILES ${CMAKE_SOURCE_DIR}/*.c)
-file(GLOB INCLUDE_FILES ${CMAKE_SOURCE_DIR}/*.h)
-
-add_library (SDL_gfx SHARED
-	${SOURCE_FILES}
-	${INCLUDE_FILES}
+target_link_libraries (${PROJECT_NAME} PUBLIC
+	$<IF:$<BOOL:${BUILD_SHARED_LIBS}>,SDL2::SDL2,SDL2::SDL2-static>
 	)
 
-target_link_libraries (SDL_gfx
-	${SDL2_LIBRARY}
-	)
-
-install (TARGETS SDL_gfx DESTINATION lib)
+install (TARGETS ${PROJECT_NAME} DESTINATION lib)
 install (FILES ${INCLUDE_FILES} DESTINATION include/SDL)
