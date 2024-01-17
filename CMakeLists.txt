@@ -1,20 +1,20 @@
 cmake_minimum_required (VERSION 3.0)
-project(SDL_gfx
+project (SDL_gfx
     VERSION 2.0.27
     LANGUAGES C
 )
 
-find_package(SDL2 REQUIRED)
+find_package (SDL2 REQUIRED)
 
 add_library (SDL_gfx SHARED)
 add_library (SDL_gfx::SDL_gfx ALIAS SDL_gfx)
 
-target_include_directories(
+target_include_directories (
 	SDL_gfx PUBLIC
 	${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-target_sources(SDL_gfx PRIVATE
+target_sources (SDL_gfx PRIVATE
 	SDL_framerate.c
 	SDL_gfxBlitFunc.c
 	SDL_gfxPrimitives.c
