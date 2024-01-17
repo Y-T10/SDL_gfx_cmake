@@ -26,8 +26,8 @@ target_sources(SDL_gfx PRIVATE
 	SDL_rotozoom.c
 	)
 
-target_link_libraries (SDL_gfx
-	${SDL2_LIBRARY}
+target_link_libraries (SDL_gfx PUBLIC
+	$<IF:$<BOOL:${BUILD_SHARED_LIBS}>,SDL2::SDL2,SDL2::SDL2-static>
 	)
 
 install (TARGETS SDL_gfx DESTINATION lib)
